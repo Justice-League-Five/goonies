@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { GoogleApiWrapper, Map } from 'google-maps-react';
+import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 // import dotenv from 'dotenv';
 
 // dotenv.config({ path: '../../../../.env' });
@@ -47,12 +47,11 @@ class GoogleMapsContainer extends React.Component {
           initialCenter={{ lat: 37.749669, lng: -119.555108 }}
 
         >
-          {/* <Marker
-            onClick={this.onMarkerClick}
-            title="Changing Colors Garage"
-            position={{ lat: 37.749669, lng: -119.555108 }}
-            name="Changing Colors Garage"
-          /> */}
+        <Marker
+            title="Boulder Skyline Traverse"
+            position={{ lat: 39.9388, lng: -105.2582 }}
+            name="Boulder Skyline Traverse"
+          />
 
         </Map>
       </div>
