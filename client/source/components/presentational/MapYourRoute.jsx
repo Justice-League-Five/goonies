@@ -7,9 +7,10 @@ class MapYourRoute extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: 'Yosemite',
+      location: '',
     };
     this.getTrailsLocation = this.getTrailsLocation.bind(this);
+    this.selectLocation = this.selectLocation.bind(this);
   }
 
   componentDidMount() {
@@ -22,21 +23,29 @@ class MapYourRoute extends React.Component {
       const lat = 37.8651;
       const lon = 119.5383;
       getTrailsData(lat, lon);
+    } else if (location === 'Yellowstone') {
+      const lat = 44.4280;
+      const lon = 110.5885;
+      getTrailsData(lat, lon);
     }
+  }
+
+  selectLocation(e) {
+    this.setState({
+      location: e,
+    });
+    this.getTrailsLocation();
   }
 
   render() {
     return (
       <div>
-        <div className="navbar">
-          <div className="dropdown">
-           <button className="dropbtn">Pick your location</button>
-           <div className="dropdown-content">
-             <a id="yosemite" href="#">Yosemite</a>
-             <a id="yellowstone" href="#">YellowStone</a>
-           </div>
-          </div>
+        <div className="buttonContainer">
+          <button onClick={() => { this.selectLocation('Yosemite'); }} type="button" name="Yosemite" id="Yosemite">Yosemite</button>
+          <button onClick={() => { this.selectLocation('Yellowstone'); }} type="button" name="Yellowstone" id="Yellowstone">YellowStone</button>
         </div>
+        <br />
+        <br />
         <div>
           <GoogleMapsContainer />
         </div>
