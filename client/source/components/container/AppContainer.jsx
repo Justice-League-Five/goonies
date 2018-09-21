@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import { Link, Router } from '@reach/router';
 import MapYourRoute from '../presentational/MapYourRoute';
 import SignUp from '../presentational/SignUp';
@@ -19,8 +20,22 @@ class AppContainer extends React.Component {
       username: '',
       password: '',
       experience: '',
+      weather: '',
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('/api/weather')
+      .then((response) => {
+        console.log(response.data);
+        this.setState({ weather: response.data })
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error, 'Could not get weather data');
+      });
+      console.log(this.state.weather)
   }
 
   handleMenuClick() {
@@ -38,12 +53,12 @@ class AppContainer extends React.Component {
 
   render() {
     const {
-      showingMenu, username, password, experience,
+      showingMenu, username, password, experience, weather,
     } = this.state;
     // this the appcontainer code that should hide the button
     return (
       <div className="header">
-        <h1 className="logo">Backpacker</h1>
+        {/* <h1 className="logo">Backpacker</h1> */}
         <nav>
           { username
             ? <button className="menu" type="button" onClick={this.handleMenuClick.bind(this)}>MENU</button>
@@ -77,7 +92,7 @@ class AppContainer extends React.Component {
           <UserProfile path="/user" userInfo={{ username, password, experience }} />
           <ParkInfo path="/info" />
           <RouteHistory path="/routes" routes={routes} username={username} />
-          <Weather path="/weather" />
+          <Weather path="/weather" weather={weather} />
           <Timer path="/timer" />
         </Router>
       </div>

@@ -123,25 +123,25 @@ app.delete('/api/routes', (req, res) => {
 });
 
 // ///// WEATHER ///// //
-app.get('/api/weathercurrent', (req, res) => {
-  weather.getCurrentWeather()
-    .then((data) => {
-      res.send(data);
+app.get('/api/weather', (req, res) => {
+  axios.get('https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/30.3555645,-81.579694')
+    .then((response) => {
+      res.send(response.data);
     })
-    .catch((err) => {
-      res.status(err, 'Error getting weather data');
+    .catch((error) => {
+      console.log(error);
     });
 });
 
-app.get('/api/weatherfive', (req, res) => {
-  weather.getFiveDayWeather()
-    .then((data) => {
-      res.send(data.list);
-    })
-    .catch((err) => {
-      res.status(err, 'Error getting weather data');
-    });
-});
+// app.get('/api/weatherfive', (req, res) => {
+//   weather.getFiveDayWeather()
+//     .then((data) => {
+//       res.send(data.list);
+//     })
+//     .catch((err) => {
+//       res.status(err, 'Error getting weather data');
+//     });
+// });
 
 
 // ///// PARK INFO ///// //
