@@ -17,7 +17,6 @@ class Weather extends React.Component {
     this.sunSet = this.sunSet.bind(this);
     this.changeWeather = this.changeWeather.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.parkState = this.parkState.bind(this);
   }
 
   changeWeather() {
@@ -29,8 +28,9 @@ class Weather extends React.Component {
   }
 
   toggle() {
-    console.log('click')
-    this.setState({ collapse: !this.state.collapse });
+    const { collapse } = this.state;
+    debugger;
+    this.setState({ collapse: !collapse });
   }
 
   sunRise() {
@@ -67,7 +67,7 @@ class Weather extends React.Component {
     if (this.state.park === 'Yosemite') {
       return (
         <YosemiteWeather
-          weather={this.props.weather.yosemite} 
+          weather={this.props.weather.yosemite}
           changeWeather={this.changeWeather}
           sunRise={this.sunRise}
           sunSet={this.sunSet}
@@ -81,7 +81,7 @@ class Weather extends React.Component {
         <button type="button" onClick={this.changeWeather}>Yosemite</button>
         <div style={{ backgroundColor: '#aaaaaa' }}>
           Todays Forecast
-          <p stlye={{}}>
+          <p>
             Current temperature is
             &nbsp;
             {Math.round(currently.temperature)}
@@ -134,18 +134,11 @@ class Weather extends React.Component {
         </div>
         <br />
         <div>
-          <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
-          <Collapse isOpen={this.state.collapse}>
-            <Card>
-              <CardBody>
-                <ForecastForm
-                  forecasts={daily.data}
-                  sunRise={this.sunRise}
-                  sunSet={this.sunSet}
-                />
-              </CardBody>
-            </Card>
-          </Collapse>
+          <ForecastForm
+            forecasts={daily.data}
+            sunRise={this.sunRise}
+            sunSet={this.sunSet}
+          />
         </div>
       </div>
     );
