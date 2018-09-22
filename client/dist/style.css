@@ -121,76 +121,98 @@ ul.dropdown li:hover {
 }
 
 /********* STOP WATCH *********/
-.timer-btns {
-    font-family: inherit;
-    font-size: 20px;
-    display: inline-block;
-    width: 72px;
-    height: 72px;
-    margin: 24px;
-    padding: 0;
-    cursor: pointer;
-    letter-spacing: 1px;
-    border: 0;
-    border-radius: 12px;
-    outline: none;
-    background: rgba(177, 177, 177, 0.774);
-    float:none;
-  }
-.start-btn { color: #0a970a }
-.stop-btn { color: #df1d0f }
-.timer-btns:hover {
-    background-color: white;
-    color: black;
-    border: 2px solid #050404;
-}
-.timer-center { text-align: center }
+
 .timer-format {
-  font-size: 76px;
-  font-weight: 100;
-  line-height: 160px;
-  margin: 0;
-  border: solid #cecfd0;
-  border-width: 2px 0;
-}
-.timer-save {
-    padding: 0 0 0 20px;
-    list-style-type: none;
-  }
-.timer-point {
-    font-size: 20px;
-    line-height: 60px;
-    padding-right: 20px;
-    text-align: left;
-    border-bottom: 3px solid #d9dae0;
-  }
-.timer-distance {
-    padding-left: 80px;
-}
-.fieldwrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.timer-text {
-    font-size: 25px;
-    font-family: Arial, Helvetica, sans-serif;
-    font: white;
-    font-style: bold;
-}
-.distance-calculator {
-    background-color: white;
-    background-image: url('https://cdn.onlinewebfonts.com/svg/img_546769.png');
-    background-position: 60px 3px; 
-    background-repeat: no-repeat;
-    background-size: 17px;
-    margin: 30px;
-    width: 100px;
-}
-input[type=text]:focus {
-    background-color: lightblue;
+  font-family: 'Roboto', sans-serif;
+  font-size: 72px;
+  line-height: 36px;
 }
 
+.coords {
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 48px;
+  line-height: 64px;
+}
+
+.detail-1 {
+  font-style: italic;
+  color: #e5e5e5;
+}
+
+.detail-2 {
+  font-size: 36px;
+  color: #c9c9c9;
+}
+
+.detail-3 {
+  font-size: 128px;
+  text-align: right;
+}
+
+.section-head {
+  text-align: center;
+}
+
+.space-head {
+  height: 30px;
+}
+
+.space-timestamp {
+  height: 12px;
+  width: 100%;
+}
+
+.space-divide {
+  height: 48px;
+  width: 100%;
+}
+
+.divide {
+  height: 2px;
+  width: 100%;
+  background-color: #afafaf;
+}
+
+.space-trail {
+  height: 110px;
+  width: 100%;
+}
+
+.space-to-finish {
+  height: 80px;
+  width: 100%;
+}
+
+.space-under-finish {
+  height: 120px;
+  width: 100%;
+}
+
+.space-5 {
+  height: 200px;
+  width: 100%;
+}
+
+.wide-btn {
+  width: 100%;
+  opacity: 0.75;
+  border-radius: 8px;
+  height: 70px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 36px;
+}
+
+.start-btn {
+  background-color: #62e200;
+}
+
+.finish-btn {
+  background-color: #fff200;
+}
+
+.whole-box {
+}
 
  /********Login********/
 
@@ -217,7 +239,7 @@ div.login label {
   text-align: left;
   font-size: 18px;
 }
-  
+
 .login input[type=button] {
   padding: 16px 20px;
   margin: 8px 10px;
