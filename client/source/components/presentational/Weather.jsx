@@ -17,6 +17,7 @@ class Weather extends React.Component {
     this.sunSet = this.sunSet.bind(this);
     this.changeWeather = this.changeWeather.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.parkState = this.parkState.bind(this);
   }
 
   changeWeather() {
@@ -33,7 +34,7 @@ class Weather extends React.Component {
   }
 
   sunRise() {
-    const { daily } = this.props.weather.yellowstone;
+    const { daily } = this.parkState();
     const unix = daily.data[0].sunriseTime;
     const date = new Date(unix * 1000);
     const hours = date.getHours();
@@ -44,7 +45,7 @@ class Weather extends React.Component {
   }
 
   sunSet() {
-    const { daily } = this.props.weather.yellowstone;
+    const { daily } = this.parkState();
     const unix = daily.data[0].sunsetTime;
     const date = new Date(unix * 1000);
     const hours = date.getHours();
@@ -52,6 +53,13 @@ class Weather extends React.Component {
     const seconds = "0" + date.getSeconds();
     const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
     return formattedTime;
+  }
+
+  parkState() {
+    if (this.state.park === 'YellowStone') {
+      return this.props.weather.yellowstone;
+    }
+    return this.props.weather.yosemite;
   }
 
   render() {
