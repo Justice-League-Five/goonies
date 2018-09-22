@@ -9,7 +9,7 @@ class Forecast extends React.Component {
   }
 
   render() {
-    const { forecasts } = this.props;
+    const { forecasts, sunRise, sunSet } = this.props;
     let count = 0;
     return (
       <div>
@@ -23,39 +23,42 @@ class Forecast extends React.Component {
               </h2>
               <p>
               High
-                {' '}
+              &nbsp;
                 {Math.round(weather.temperatureHigh)}
-                {' '}
+                &deg;F
+                &nbsp;
               Low
+              &nbsp;
                 {Math.round(weather.temperatureLow)}
+                &deg;F
               </p>
               <p>
                 Sun Rise
-                {' '}
-                {weather.sunriseTime}
-                {' '}
+                &nbsp;
+                {sunRise(weather.sunriseTime)}
+                &nbsp;
                 Sun Set
-                {' '}
-                {weather.sunsetTime}
-                {' '}
+                &nbsp;
+                {sunSet(weather.sunsetTime)}
+                &nbsp;
               </p>
               <p>
                 Humidity
-                {' '}
+                &nbsp;
                 {weather.humidity}
                 {'% '}
                 Today is
-                {' '}
+                &nbsp;
                 {weather.summary}
-                {' '}
-                with Wind speed of
-                {' '}
+                &nbsp;
+                Wind speed of
+                &nbsp;
                 {weather.windSpeed}
-                {' '}
+                &nbsp;
                 mph
-                {' '}
+                &nbsp;
                 UV index
-                {' '}
+                &nbsp;
                 {weather.uvIndex}
               </p>
             </div>

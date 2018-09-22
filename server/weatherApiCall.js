@@ -3,7 +3,7 @@ const axios = require('axios');
 const WEATHER_API = require('../myapikey.js').weatherKey;
 
 const getCurrentWeather = function () {
-  return axios.get('https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/30.3555645,-81.579694')
+  return axios.get('https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/44.4280,110.5885')
     .then((response) => {
       response.data
     })

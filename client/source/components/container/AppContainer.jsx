@@ -20,22 +20,34 @@ class AppContainer extends React.Component {
       username: '',
       password: '',
       experience: '',
-      weather: '',
+      yosemite: '',
+      yellowstone: '',
     };
+
     this.transferUserInfo = this.transferUserInfo.bind(this);
+
   }
 
   componentDidMount() {
     axios.get('/api/weather')
       .then((response) => {
-        console.log(response.data);
-        this.setState({ weather: response.data })
+        // console.log(response.data);
+        this.setState({ yellowstone: response.data });
       })
       .catch((error) => {
         console.log(error);
         alert(error, 'Could not get weather data');
       });
-      console.log(this.state.weather)
+
+    axios.get('/api/weather/yosemite')
+      .then((response) => {
+        // console.log(response.data);
+        this.setState({ yosemite: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error, 'Could not get weather data');
+      });
   }
 
   handleMenuClick() {
@@ -53,9 +65,10 @@ class AppContainer extends React.Component {
 
   render() {
     const {
-      showingMenu, username, password, experience, weather,
+      showingMenu, username, password, experience, yosemite, yellowstone
     } = this.state;
-    // this the appcontainer code that should hide the button
+    const weather = { yosemite, yellowstone }
+    
     return (
       <div className="header">
         {/* <h1 className="logo">Backpacker</h1> */}

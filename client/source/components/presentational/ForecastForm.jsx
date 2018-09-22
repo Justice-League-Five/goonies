@@ -10,14 +10,13 @@ class ForecastForm extends React.Component {
   }
 
   render() {
-    const { forecasts } = this.props;
+    const { forecasts, sunRise, sunSet } = this.props;
     return (
       <div style={{ backgroundColor: '#aaaaaa' }}>
-        <Forecast forecasts={forecasts} />
+        <Forecast forecasts={forecasts} sunRise={sunRise} sunSet={sunSet} />
       </div>
-      
     );
   }
 }
- 
+
 export default ForecastForm;
