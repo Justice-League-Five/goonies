@@ -10,6 +10,8 @@ import ParkInfo from '../presentational/ParkInfo';
 import UserProfile from '../presentational/UserProfile';
 import Timer from '../presentational/Timer';
 import Weather from '../presentational/Weather';
+const axios = require('axios');
+const trailsKey = require('../../../../trailskey');
 
 class AppContainer extends React.Component {
   constructor(props) {
@@ -19,10 +21,46 @@ class AppContainer extends React.Component {
       username: '',
       password: '',
       experience: '',
+      trailsData: {},
+      location: 'Yellowstone', 
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
+    this.selectLocation = this.selectLocation.bind(this);
+    this.getTrailsData = this.getTrailsData.bind(this);
   }
 
+  componentDidMount() {
+    this.selectLocation();
+  }
+
+  getTrailsData(lat, lng) {
+    const trailsApiKey = trailsKey.trailsKey;
+    axios.get(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=-${lng}&maxDistance=30&key=${trailsApiKey}`)
+      .then((response) => {
+        this.setState({ trailsData: response.data.trails });
+        console.log('Success in obtaining data from Trails API', response.data);
+      })
+      .catch((error) => {
+        console.log('Error - data was not received from Trals Api', error);
+      });
+  }
+
+  selectLocation(e) {
+    this.setState({
+      location: e,
+    });
+    const { location } = this.state;
+    if (location === 'Yosemite') {
+      const lat = 37.8651;
+      const lng = 119.5383;
+      this.getTrailsData(lat, lng);
+    } else if (location === 'Yellowstone') {
+      const lat = 44.4280;
+      const lng = 110.5885;
+      this.getTrailsData(lat, lng);
+    }
+  }
+  
   handleMenuClick() {
     const { showingMenu } = this.state;
     this.setState({ showingMenu: !showingMenu });
@@ -37,13 +75,14 @@ class AppContainer extends React.Component {
   }
 
   render() {
+    console.log('render', this.state.trailsData);
     const {
-      showingMenu, username, password, experience,
+      showingMenu, username, password, experience, trailsData
     } = this.state;
     // this the appcontainer code that should hide the button
     return (
       <div className="header">
-        <h1 className="logo">Backpacker</h1>
+        <div className="logo"/>
         <nav>
           { username
             ? <button className="menu" type="button" onClick={this.handleMenuClick.bind(this)}>MENU</button>
@@ -70,10 +109,14 @@ class AppContainer extends React.Component {
             : (null)
           }
         </nav>
+        <div className="topnav">
+          <button onClick={() => { this.selectLocation('Yosemite'); }} type="button" name="Yosemite" id="Yosemite">Yosemite</button>
+          <button onClick={() => { this.selectLocation('Yellowstone'); }} type="button" name="Yellowstone" id="Yellowstone">YellowStone</button>
+        </div>
         <Router>
           <Login exact path="/" transferUserInfo={this.transferUserInfo} />
           <SignUp path="/signUp" transferUserInfo={this.transferUserInfo} />
-          <MapYourRoute path="/maps" />
+          <MapYourRoute path="/maps" data={trailsData} />
           <UserProfile path="/user" userInfo={{ username, password, experience }} />
           <ParkInfo path="/info" />
           <RouteHistory path="/routes" routes={routes} username={username} />
