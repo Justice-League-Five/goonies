@@ -120,6 +120,10 @@ ul.dropdown li:hover {
   background-color: rgba(56, 46, 46, 0.3);
 }
 
+.yoseImg {
+  width: 500px;
+}
+
 /********* STOP WATCH *********/
 
 .timer-format {
