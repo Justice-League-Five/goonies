@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 const salt = bcrypt.genSaltSync(10);
 
-const sequelize = new Sequelize(`${process.env.DB_URL}`);
+const sequelize = new Sequelize(process.env.DB_URL);
 
 sequelize
   .authenticate()

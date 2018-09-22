@@ -9,6 +9,7 @@ import routes from '../../SampleData';
 import ParkInfo from '../presentational/ParkInfo';
 import UserProfile from '../presentational/UserProfile';
 import Timer from '../presentational/Timer';
+// import ClassicTimer from '../presentational/ClassicTimer';
 import Weather from '../presentational/Weather';
 const axios = require('axios');
 const trailsKey = require('../../../../trailskey');
@@ -98,7 +99,7 @@ class AppContainer extends React.Component {
                     <li><Link to="/maps" className="menu-link">Map</Link></li>
                     <li><Link to="/weather" className="menu-link">Weather</Link></li>
                     <li><Link to="/info" className="menu-link">Park Info</Link></li>
-                    <li><Link to="/timer" className="menu-link">Stop Watch</Link></li>
+                    <li><Link to="/explorer" className="menu-link">Explorer</Link></li>
                     <li><Link to="/routes" className="menu-link">My History</Link></li>
                     <li><Link to="/user" className="menu-link">My Profile</Link></li>
                     <li><Link to="/" className="menu-link">Sign Out</Link></li>
@@ -121,7 +122,7 @@ class AppContainer extends React.Component {
           <ParkInfo path="/info" />
           <RouteHistory path="/routes" routes={routes} username={username} />
           <Weather path="/weather" />
-          <Timer path="/timer" />
+          <Timer path="/explorer" />
         </Router>
       </div>
     );
