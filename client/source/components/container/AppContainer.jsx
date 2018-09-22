@@ -67,8 +67,8 @@ class AppContainer extends React.Component {
     const {
       showingMenu, username, password, experience, yosemite, yellowstone
     } = this.state;
-    const weather = { yosemite, yellowstone }
-    
+    const weather = { yosemite, yellowstone };
+
     return (
       <div className="header">
         {/* <h1 className="logo">Backpacker</h1> */}

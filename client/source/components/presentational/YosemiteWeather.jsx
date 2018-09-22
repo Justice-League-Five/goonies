@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ForecastForm from './ForecastForm';
+import WeatherChart from './WeatherChart';
 
 class YosemiteWeather extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class YosemiteWeather extends React.Component {
   }
 
   render() {
+    const { sunRise, sunSet } = this.props;
     const { currently, daily } = this.props.weather;
     return (
       <div>
@@ -50,6 +52,7 @@ class YosemiteWeather extends React.Component {
           </p>
           <p>
             Humidity
+            &nbsp;
             {daily.data[0].humidity}
             &nbsp;
             Today is
@@ -67,8 +70,13 @@ class YosemiteWeather extends React.Component {
           </p>
         </div>
         <br />
+        <WeatherChart forecasts={daily.data} />
         <div>
-          <ForecastForm forecasts={daily.data} sunRise={this.props.sunRise} sunSet={this.props.sunSet} />
+          <ForecastForm 
+            forecasts={daily.data}
+            sunRise={sunRise}
+            sunSet={sunSet}
+          />
         </div>
       </div>
     );

@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import ForecastForm from './ForecastForm';
 import YosemiteWeather from './YosemiteWeather';
-
+import WeatherChart from './WeatherChart';
 
 class Weather extends React.Component {
   constructor(props) {
@@ -16,7 +16,6 @@ class Weather extends React.Component {
     this.sunRise = this.sunRise.bind(this);
     this.sunSet = this.sunSet.bind(this);
     this.changeWeather = this.changeWeather.bind(this);
-    this.toggle = this.toggle.bind(this);
   }
 
   changeWeather() {
@@ -25,12 +24,6 @@ class Weather extends React.Component {
     } else {
       this.setState({ park: 'YellowStone' });
     }
-  }
-
-  toggle() {
-    const { collapse } = this.state;
-    debugger;
-    this.setState({ collapse: !collapse });
   }
 
   sunRise() {
@@ -66,14 +59,17 @@ class Weather extends React.Component {
     const { currently, daily } = this.props.weather.yellowstone;
     if (this.state.park === 'Yosemite') {
       return (
-        <YosemiteWeather
-          weather={this.props.weather.yosemite}
-          changeWeather={this.changeWeather}
-          sunRise={this.sunRise}
-          sunSet={this.sunSet}
-        />
+        <div>
+          <YosemiteWeather
+            weather={this.props.weather.yosemite}
+            changeWeather={this.changeWeather}
+            sunRise={this.sunRise}
+            sunSet={this.sunSet}
+          />
+        </div>
       );
     }
+
     return (
       <div>
         <h1>{this.state.park}</h1>
@@ -133,6 +129,7 @@ class Weather extends React.Component {
           </p>
         </div>
         <br />
+        <WeatherChart forecasts={daily.data} />
         <div>
           <ForecastForm
             forecasts={daily.data}
