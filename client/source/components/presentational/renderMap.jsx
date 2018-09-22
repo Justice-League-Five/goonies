@@ -37,7 +37,7 @@ class GoogleMapsContainer extends React.Component {
 
     };
     const { google } = this.props;
-    console.log(google);
+    // console.log(google);
     return (
       <div className="map">
         <Map

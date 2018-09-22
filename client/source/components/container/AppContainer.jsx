@@ -9,7 +9,7 @@ import routes from '../../SampleData';
 import ParkInfo from '../presentational/ParkInfo';
 import UserProfile from '../presentational/UserProfile';
 import Timer from '../presentational/Timer';
-import ClassicTimer from '../presentational/ClassicTimer';
+// import ClassicTimer from '../presentational/ClassicTimer';
 import Weather from '../presentational/Weather';
 
 class AppContainer extends React.Component {

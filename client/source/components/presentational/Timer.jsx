@@ -102,6 +102,7 @@ class Timer extends React.Component {
             {this.time}
           </h1>
           <div className="space-timestamp"></div>
+          <div className="coords">{this.getCoords}</div>
           <div className="coords">{this.displayLat}</div>
           <div className="coords">{this.displayLong}</div>
           <div className="space-divide"></div>

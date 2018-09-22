@@ -1,5 +1,5 @@
-/client/dist/main.js
-/node_modules
+client/dist/main.js
+node_modules
 npm-debug.log
 .DS_Store
 *.env
