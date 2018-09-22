@@ -1,58 +1,35 @@
 import React from 'react';
 import GoogleMapsContainer from './renderMap';
-import { getTrailsData } from '../../../../server/trailsApi';
 
 
-class MapYourRoute extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      location: '',
-    };
-    this.getTrailsLocation = this.getTrailsLocation.bind(this);
-    this.selectLocation = this.selectLocation.bind(this);
-  }
-
-  componentDidMount() {
-    this.getTrailsLocation();
-  }
-
-  getTrailsLocation() {
-    const { location } = this.state;
-    if (location === 'Yosemite') {
-      const lat = 37.8651;
-      const lon = 119.5383;
-      getTrailsData(lat, lon);
-    } else if (location === 'Yellowstone') {
-      const lat = 44.4280;
-      const lon = 110.5885;
-      getTrailsData(lat, lon);
-    }
-  }
-
-  selectLocation(e) {
-    this.setState({
-      location: e,
-    });
-    this.getTrailsLocation();
-  }
-
-  render() {
+const MapYourRoute = (props) => {
+  console.log('myr -data', props.data);
+  const text = props.data;
+  const trails = text.map((trail) => {
     return (
-      <div>
-        <div className="buttonContainer">
-          <button onClick={() => { this.selectLocation('Yosemite'); }} type="button" name="Yosemite" id="Yosemite">Yosemite</button>
-          <button onClick={() => { this.selectLocation('Yellowstone'); }} type="button" name="Yellowstone" id="Yellowstone">YellowStone</button>
-        </div>
-        <br />
-        <br />
-        <div>
-          <GoogleMapsContainer />
-        </div>
+      <div key={trail.key} id="trailData">
+        <h4 className="trailTitle">{trail.name}</h4>
+        <div className="difficultyLevel">{trail.difficulty}</div>
+        <div className="trailLength">{trail.length}</div>
+        <div className="starRating">{trail.stars}</div>
       </div>
     );
-  }
-}
+  });
+
+  return (
+    <div id="mapPageContainer">
+      <div className="trailsLocation">
+        <ul className="list">
+          {trails}
+        </ul>
+      </div>
+      <br />
+      <div className="mapdisplay">
+        <GoogleMapsContainer />
+      </div>
+    </div>
+  );
+};
 
 
 export default MapYourRoute;
