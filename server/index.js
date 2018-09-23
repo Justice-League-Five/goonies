@@ -123,23 +123,23 @@ app.delete('/api/routes', (req, res) => {
 });
 
 // ///// WEATHER ///// //
-app.get('/api/weathercurrent', (req, res) => {
-  weather.getCurrentWeather()
-    .then((data) => {
-      res.send(data);
+app.get('/api/weather', (req, res) => {
+  axios.get('https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/44.4280,110.5885')
+    .then((response) => {
+      res.send(response.data);
     })
-    .catch((err) => {
-      res.status(err, 'Error getting weather data');
+    .catch((error) => {
+      console.log(error);
     });
 });
 
-app.get('/api/weatherfive', (req, res) => {
-  weather.getFiveDayWeather()
-    .then((data) => {
-      res.send(data.list);
+app.get('/api/weather/yosemite', (req, res) => {
+  axios.get('https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/37.8651,119.5383')
+    .then((response) => {
+      res.send(response.data);
     })
-    .catch((err) => {
-      res.status(err, 'Error getting weather data');
+    .catch((error) => {
+      console.log(error);
     });
 });
 
