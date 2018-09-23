@@ -75,7 +75,7 @@ class Weather extends React.Component {
         <h1>{this.state.park}</h1>
         <h2>Current Weather</h2>
         <button type="button" onClick={this.changeWeather}>Yosemite</button>
-        <div style={{ backgroundColor: '#aaaaaa' }}>
+        <div style={{ backgroundColor: '#aaaaaa', padding: 15 }}>
           Todays Forecast
           <p>
             Current temperature is

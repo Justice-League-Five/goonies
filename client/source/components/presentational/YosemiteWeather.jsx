@@ -17,7 +17,7 @@ class YosemiteWeather extends React.Component {
         <h1>Yosemite</h1>
         <h2>Current Weather</h2>
         <button type="button" onClick={this.props.changeWeather}>YellowStone</button>
-        <div style={{ backgroundColor: '#aaaaaa' }}>
+        <div style={{ backgroundColor: '#aaaaaa', padding: 15 }}>
           Todays Forecast
           <p>
             Current temperature is
