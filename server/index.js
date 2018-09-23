@@ -8,7 +8,7 @@ require('dotenv').config();
 const weather = require('./weatherApiCall.js');
 // const path = require('path')
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 app.use(express.static(`${__dirname}/../client/dist`));
 app.use(bodyparser.json());
@@ -148,7 +148,8 @@ app.get('/api/weather/yosemite', (req, res) => {
 
 app.get('/api/park/alerts', (req, res) => {
   // hard coded for yosemite alerts (parkCode=yose)
-  axios.get(`https://api.nps.gov/api/v1/alerts?parkCode=yose%2C&stateCode=ca&limit=10&api_key=${process.env.PARK_API}`)
+  axios.get(`https://api.nps.gov/api/v1/alerts?parkCode=yose,%2C&stateCode=ca&limit=10&api_key=${process.env.PARK_API}`)
+  //axios.get(`https://api.nps.gov/api/v1/alerts?parkCode=yose%2C&stateCode=ca&limit=10&api_key=${process.env.PARK_API}`)
     .then((data) => {
       res.send(data.data);
     })
@@ -159,7 +160,30 @@ app.get('/api/park/alerts', (req, res) => {
 
 app.get('/api/park/info', (req, res) => {
   // hard coded for yosemite park info (parkCode=yose)
-  axios.get(`https://api.nps.gov/api/v1/parks?parkCode=yose&stateCode=ca&api_key=${process.env.PARK_API}`)
+  axios.get(`https://developer.nps.gov/api/v1/parks?parkCode=yose&api_key=${process.env.PARK_API}`)
+  //axios.get(`https://api.nps.gov/api/v1/parks?parkCode=yose&stateCode=ca&api_key=${process.env.PARK_API}`)
+    .then((data) => {
+      res.send(data.data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get('/api/park/articles', (req, res) => {
+  // hard coded for yosemite alerts (parkCode=yose)
+  axios.get(`https://api.nps.gov/api/v1/articles?parkCode=yose&api_key=api_key=${process.env.PARK_API}`)
+    .then((data) => {
+      res.send(data.data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get('/api/park/news', (req, res) => {
+  // hard coded for yosemite alerts (parkCode=yose)
+  axios.get(`https://api.nps.gov/api/v1/newsreleases?parkCode=yose&api_key=api_key=${process.env.PARK_API}`)
     .then((data) => {
       res.send(data.data.data);
     })
