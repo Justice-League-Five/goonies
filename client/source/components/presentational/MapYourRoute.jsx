@@ -8,7 +8,7 @@ const MapYourRoute = (props) => {
   const trails = text.map((trail) => {
     return (
       <ul key={trail.key} id="trailCard">
-          <li className="trailTitle">{trail.name}</li>
+          <li className="trailTitle" style={{color: "#009933"}}>{trail.name}</li>
           <li className="difficultyLevel">Difficulty Level: {trail.difficulty}</li>
           <li className="trailLength">Length: {trail.length} miles</li>
           <li className="starRating">Star Rating: {trail.stars}</li>

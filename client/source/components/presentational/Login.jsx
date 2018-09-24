@@ -71,15 +71,15 @@ class Login extends React.Component {
         <form>
           <div className="loginfield">
             <label htmlFor="username">
-              Username:
+              
               <br />
-              <input type="text" name="username" onChange={this.handleChange} />
+              <input type="text" name="username" placeholder="Username" onChange={this.handleChange} />
             </label>
             <br />
             <label htmlFor="password">
-              Password:
+            
               <br />
-              <input type="password" name="password" onChange={this.handleChange} />
+              <input type="password" name="password" placeholder="Password..." onChange={this.handleChange} />
             </label>
             <br />
           </div>

@@ -21,7 +21,7 @@ const GoogleMapsContainer = (props) => {
   //   )
   //   });
   const style = {
-    width: '30vw',
+    width: '25vw',
     height: '60vh',
     marginLeft: 'auto',
     marginRight: 'auto',

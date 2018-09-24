@@ -2,25 +2,32 @@
 body {
   width: 500px; /* iphone 4 width*/
   margin: 0 auto;
-  background-image: url('https://303magazine.com/wp-content/uploads/2016/05/ThinkstockPhotos-177541650-1.jpg');
+  background-image: url('http://femtotrend.com/wp-content/uploads/2017/10/1-redwoods.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   line-height: 2em;
 }
+.topnav {
+  background-color: black;
+  overflow: hidden;
+  margin-bottom: 15px;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
 h1 {
-  color:  hsl(248, 80%, 6%);
+  color:  #f0f0f0;
 }
 h2 {
-  color:  #A9DFBF;
+  color:  #009933;
 }
 h3 {
   color:  #051886;
 }
 h4 {
-  color:  rgb(5, 46, 22);
+  color:  #006622
   margin-left: 8px;
   margin-right: 8px;
 }
@@ -31,7 +38,7 @@ input {
 }
 
 button, input[type=button], input[type=submit] {
-  background-color: #A9DFBF;
+  background-color: #009933;
   border: none;
   color: #212F3C;
   padding: 15px 15px;
@@ -48,10 +55,12 @@ button:focus {
 
 /********* LOGO *********/
 .logo {
-  font-style: bold;
-  font-size: 56px;
-  text-align: center;
-  color:  #087335;
+  background-image: url('https://fontmeme.com/permalink/180921/4e77fb4f49470a31411572da67bb683a.png');
+  background-repeat: no-repeat;
+  margin-top: 15px;
+  padding: 10px;
+  height: 80px;
+  max-width: 500px;
 }
 
 /********* MENU *********/
@@ -112,7 +121,57 @@ ul.dropdown li:hover {
   display: flex;
   justify-content: center;
   align-items: bottom;
-  padding: 20px;
+  padding: 30px;
+  max-width: 300px;
+}
+#mapPageContainer {
+  max-width: 500px;
+  max-height: 700px;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.5); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 55%;
+  margin-top: 20px;
+}
+.starRating {
+  margin-bottom: 5px;
+}
+.trailsLocation {
+  float: right;
+}
+.list {
+  height: 680px;
+  overflow:auto;
+  float: right;
+}
+#trailCard {
+  height: 140px;
+  max-width: 190px;
+  border: 2px solid #f0f0f0;
+  background-color: rgba(0,0,0, 0.6);
+  font-size: 12px;
+  padding: 5px;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  
+}
+.trailDetails {
+  margin-Top: -5px;
+  margin-Bottom: -5px;
+  display: inline-block;
+  padding-right: 10px;
+
+  
 }
 
 /********* PARK INFO *********/
@@ -133,7 +192,7 @@ ul.dropdown li:hover {
 }
 
 .coords {
-  color: black;
+  color: #c9c9c9;
   font-family: 'Roboto', sans-serif;
   font-size: 48px;
   line-height: 64px;
@@ -156,6 +215,7 @@ ul.dropdown li:hover {
 
 .section-head {
   text-align: center;
+  color: #DAA520
 }
 
 .space-head {
@@ -216,6 +276,9 @@ ul.dropdown li:hover {
 }
 
 .whole-box {
+  background-color: rgba(0,0,0, 0.5);
+  padding: 15px;
+  color: #f0f0f0;
 }
 
  /********Login********/
@@ -308,6 +371,22 @@ div.userprofilewrapper {
 }
 
 /********* Forecast *********/
+.currentWeather {
+  background-color: rgba(0,0,0, 0.5);
+  padding: 15px;
+  color: #f0f0f0;
+}
+.weatherChart {
+  background-color: rgba(245,245,245,.7);
+  padding: 15px;
+  color: #f0f0f0;
+}
+.foreCast {
+  background-color: rgba(0,0,0, 0.5);
+  padding: 15px;
+  color: #f0f0f0;
+  margin-Top: 30px; 
+}
 .allweather {
   display: flex;
   flex-direction: column;

@@ -69,7 +69,7 @@ const WeatherChart = (forecast) => {
   };
 
   return (
-    <div className="weatherChart" style={{ backgroundColor: '#aaaaaa', padding: 15 }}>
+    <div className="weatherChart" >
       <h2>Weekly Highs</h2>
       <Line data={data} />
     </div>
