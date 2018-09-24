@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import { Link, Router } from '@reach/router';
 import MapYourRoute from '../presentational/MapYourRoute';
 import SignUp from '../presentational/SignUp';
@@ -9,8 +10,8 @@ import routes from '../../SampleData';
 import ParkInfo from '../presentational/ParkInfo';
 import UserProfile from '../presentational/UserProfile';
 import Timer from '../presentational/Timer';
+// import ClassicTimer from '../presentational/ClassicTimer';
 import Weather from '../presentational/Weather';
-const axios = require('axios');
 const trailsKey = require('../../../../trailskey');
 
 class AppContainer extends React.Component {
@@ -21,17 +22,40 @@ class AppContainer extends React.Component {
       username: '',
       password: '',
       experience: '',
+      yosemite: '',
+      yellowstone: '',
       trailsData: {},
       location: 'Yellowstone', 
+
     };
-    this.transferUserInfo = this.transferUserInfo.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
     this.getTrailsData = this.getTrailsData.bind(this);
+    this.transferUserInfo = this.transferUserInfo.bind(this);
   }
 
   componentDidMount() {
-    this.selectLocation();
+        this.selectLocation();
+    axios.get('/api/weather')
+      .then((response) => {
+        // console.log(response.data);
+        this.setState({ yellowstone: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error, 'Could not get weather data');
+      });
+
+    axios.get('/api/weather/yosemite')
+      .then((response) => {
+        // console.log(response.data);
+        this.setState({ yosemite: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error, 'Could not get weather data');
+      });
   }
+
 
   getTrailsData(lat, lng) {
     const trailsApiKey = trailsKey.trailsKey;
@@ -77,12 +101,12 @@ class AppContainer extends React.Component {
   render() {
     console.log('render', this.state.trailsData);
     const {
-      showingMenu, username, password, experience, trailsData, location, 
+      showingMenu, username, password, experience, yosemite, yellowstone, trailsData
     } = this.state;
-    // this the appcontainer code that should hide the button
+    const weather = { yosemite, yellowstone };
+
     return (
       <div className="header">
-        <div className="logo"/>
         <nav>
           { username
             ? <button className="menu" type="button" onClick={this.handleMenuClick.bind(this)}>MENU</button>
@@ -98,7 +122,7 @@ class AppContainer extends React.Component {
                     <li><Link to="/maps" className="menu-link">Map</Link></li>
                     <li><Link to="/weather" className="menu-link">Weather</Link></li>
                     <li><Link to="/info" className="menu-link">Park Info</Link></li>
-                    <li><Link to="/timer" className="menu-link">Stop Watch</Link></li>
+                    <li><Link to="/explorer" className="menu-link">Explorer</Link></li>
                     <li><Link to="/routes" className="menu-link">My History</Link></li>
                     <li><Link to="/user" className="menu-link">My Profile</Link></li>
                     <li><Link to="/" className="menu-link">Sign Out</Link></li>
@@ -120,7 +144,7 @@ class AppContainer extends React.Component {
           <UserProfile path="/user" userInfo={{ username, password, experience }} />
           <ParkInfo path="/info" />
           <RouteHistory path="/routes" routes={routes} username={username} />
-          <Weather path="/weather" />
+          <Weather path="/weather" weather={weather} />
           <Timer path="/timer" />
         </Router>
       </div>

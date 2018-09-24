@@ -8,7 +8,7 @@ require('dotenv').config();
 const weather = require('./weatherApiCall.js');
 // const path = require('path')
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 app.use(express.static(`${__dirname}/../client/dist`));
 app.use(bodyparser.json());
@@ -123,23 +123,23 @@ app.delete('/api/routes', (req, res) => {
 });
 
 // ///// WEATHER ///// //
-app.get('/api/weathercurrent', (req, res) => {
-  weather.getCurrentWeather()
-    .then((data) => {
-      res.send(data);
+app.get('/api/weather', (req, res) => {
+  axios.get('https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/44.4280,110.5885')
+    .then((response) => {
+      res.send(response.data);
     })
-    .catch((err) => {
-      res.status(err, 'Error getting weather data');
+    .catch((error) => {
+      console.log(error);
     });
 });
 
-app.get('/api/weatherfive', (req, res) => {
-  weather.getFiveDayWeather()
-    .then((data) => {
-      res.send(data.list);
+app.get('/api/weather/yosemite', (req, res) => {
+  axios.get('https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/37.8651,119.5383')
+    .then((response) => {
+      res.send(response.data);
     })
-    .catch((err) => {
-      res.status(err, 'Error getting weather data');
+    .catch((error) => {
+      console.log(error);
     });
 });
 
@@ -148,7 +148,8 @@ app.get('/api/weatherfive', (req, res) => {
 
 app.get('/api/park/alerts', (req, res) => {
   // hard coded for yosemite alerts (parkCode=yose)
-  axios.get(`https://api.nps.gov/api/v1/alerts?parkCode=yose%2C&stateCode=ca&limit=10&api_key=${process.env.PARK_API}`)
+  axios.get(`https://api.nps.gov/api/v1/alerts?parkCode=yose,%2C&stateCode=ca&limit=10&api_key=${process.env.PARK_API}`)
+  //axios.get(`https://api.nps.gov/api/v1/alerts?parkCode=yose%2C&stateCode=ca&limit=10&api_key=${process.env.PARK_API}`)
     .then((data) => {
       res.send(data.data);
     })
@@ -159,7 +160,30 @@ app.get('/api/park/alerts', (req, res) => {
 
 app.get('/api/park/info', (req, res) => {
   // hard coded for yosemite park info (parkCode=yose)
-  axios.get(`https://api.nps.gov/api/v1/parks?parkCode=yose&stateCode=ca&api_key=${process.env.PARK_API}`)
+  axios.get(`https://developer.nps.gov/api/v1/parks?parkCode=yose&api_key=${process.env.PARK_API}`)
+  //axios.get(`https://api.nps.gov/api/v1/parks?parkCode=yose&stateCode=ca&api_key=${process.env.PARK_API}`)
+    .then((data) => {
+      res.send(data.data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get('/api/park/articles', (req, res) => {
+  // hard coded for yosemite alerts (parkCode=yose)
+  axios.get(`https://api.nps.gov/api/v1/articles?parkCode=yose&api_key=api_key=${process.env.PARK_API}`)
+    .then((data) => {
+      res.send(data.data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get('/api/park/news', (req, res) => {
+  // hard coded for yosemite alerts (parkCode=yose)
+  axios.get(`https://api.nps.gov/api/v1/newsreleases?parkCode=yose&api_key=api_key=${process.env.PARK_API}`)
     .then((data) => {
       res.send(data.data.data);
     })

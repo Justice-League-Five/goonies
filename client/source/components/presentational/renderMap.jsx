@@ -28,7 +28,6 @@ const GoogleMapsContainer = (props) => {
 
   };
   const { google } = props;
-  console.log(google);
   return (
     <div>
       <div className="map">
