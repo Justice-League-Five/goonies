@@ -63,7 +63,7 @@
     "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
-    
+    "chart.js": "^2.7.2",
     "dotenv": "^6.0.0",
     "dotenv-webpack": "^1.5.7",
     "enzyme": "^3.6.0",
