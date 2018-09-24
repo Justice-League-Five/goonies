@@ -12,7 +12,6 @@ import UserProfile from '../presentational/UserProfile';
 import Timer from '../presentational/Timer';
 // import ClassicTimer from '../presentational/ClassicTimer';
 import Weather from '../presentational/Weather';
-const axios = require('axios');
 const trailsKey = require('../../../../trailskey');
 
 class AppContainer extends React.Component {
@@ -85,7 +84,7 @@ class AppContainer extends React.Component {
       this.getTrailsData(lat, lng);
     }
   }
-  
+
   handleMenuClick() {
     const { showingMenu } = this.state;
     this.setState({ showingMenu: !showingMenu });
