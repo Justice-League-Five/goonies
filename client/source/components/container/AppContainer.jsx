@@ -10,10 +10,10 @@ import routes from '../../SampleData';
 import ParkInfo from '../presentational/ParkInfo';
 import UserProfile from '../presentational/UserProfile';
 import Timer from '../presentational/Timer';
+import Checklist from '../presentational/Checklist';
 // import ClassicTimer from '../presentational/ClassicTimer';
 import Weather from '../presentational/Weather';
-const axios = require('axios');
-const trailsKey = require('../../../../trailskey');
+// const trailsKey = require('../../../../trailskey');
 
 class AppContainer extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class AppContainer extends React.Component {
   }
 
   componentDidMount() {
-        this.selectLocation();
+    this.selectLocation();
     axios.get('/api/weather')
       .then((response) => {
         // console.log(response.data);
@@ -126,6 +126,7 @@ class AppContainer extends React.Component {
                     <li><Link to="/explorer" className="menu-link">Explorer</Link></li>
                     <li><Link to="/routes" className="menu-link">My History</Link></li>
                     <li><Link to="/user" className="menu-link">My Profile</Link></li>
+                    <li><Link to="/checklist" className="menu-link">Checklist</Link></li>
                     <li><Link to="/" className="menu-link">Sign Out</Link></li>
                   </ul>
                 </div>
@@ -139,14 +140,15 @@ class AppContainer extends React.Component {
           <button onClick={() => { this.selectLocation('Yellowstone'); }} type="button" name="Yellowstone" id="Yellowstone">YellowStone</button>
         </div>
         <Router>
-          <Login exact path="/" transferUserInfo={this.transferUserInfo} />
+          <Login exact path="/" transferUserInfo={this.transferUserInfo}/>
           <SignUp path="/signUp" transferUserInfo={this.transferUserInfo} />
           <MapYourRoute path="/maps" data={trailsData} />
           <UserProfile path="/user" userInfo={{ username, password, experience }} />
           <ParkInfo path="/info" />
           <RouteHistory path="/routes" routes={routes} username={username} />
           <Weather path="/weather" weather={weather} />
-          <Timer path="/timer" />
+          <Timer path="/explorer" />
+          <Checklist path="/checklist" />
         </Router>
       </div>
     );
