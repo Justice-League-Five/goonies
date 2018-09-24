@@ -13,7 +13,8 @@ import Timer from '../presentational/Timer';
 import Checklist from '../presentational/Checklist';
 // import ClassicTimer from '../presentational/ClassicTimer';
 import Weather from '../presentational/Weather';
-// const trailsKey = require('../../../../trailskey');
+
+const trailsKey = require('../../../../trailskey');
 
 class AppContainer extends React.Component {
   constructor(props) {
@@ -85,7 +86,7 @@ class AppContainer extends React.Component {
       this.getTrailsData(lat, lng);
     }
   }
-  
+
   handleMenuClick() {
     const { showingMenu } = this.state;
     this.setState({ showingMenu: !showingMenu });

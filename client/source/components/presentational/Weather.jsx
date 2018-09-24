@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-  Collapse, Button, CardBody, Card,
-} from 'reactstrap';
 import ForecastForm from './ForecastForm';
 import YosemiteWeather from './YosemiteWeather';
 import WeatherChart from './WeatherChart';
@@ -75,7 +72,7 @@ class Weather extends React.Component {
         <h1>{this.state.park}</h1>
         <h2>Current Weather</h2>
         <button type="button" onClick={this.changeWeather}>Yosemite</button>
-        <div style={{ backgroundColor: '#aaaaaa', padding: 15 }}>
+        <div className="currentWeather" style={{ backgroundColor: '#aaaaaa', padding: 15 }}>
           Todays Forecast
           <p>
             Current temperature is

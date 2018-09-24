@@ -7,14 +7,15 @@ const MapYourRoute = (props) => {
   const text = props.data;
   const trails = text.map((trail) => {
     return (
-      <div key={trail.key} id="trailData">
-        <h4 className="trailTitle">{trail.name}</h4>
-        <div className="difficultyLevel">{trail.difficulty}</div>
-        <div className="trailLength">{trail.length}</div>
-        <div className="starRating">{trail.stars}</div>
-      </div>
+      <ul key={trail.key} id="trailCard">
+          <li className="trailTitle">{trail.name}</li>
+          <li className="difficultyLevel">Difficulty Level: {trail.difficulty}</li>
+          <li className="trailLength">Length: {trail.length} miles</li>
+          <li className="starRating">Star Rating: {trail.stars}</li>
+      </ul>
     );
   });
+ 
 
   return (
     <div id="mapPageContainer">
@@ -25,7 +26,7 @@ const MapYourRoute = (props) => {
       </div>
       <br />
       <div className="mapdisplay">
-        <GoogleMapsContainer />
+        <GoogleMapsContainer data={props.data}/>
       </div>
     </div>
   );
