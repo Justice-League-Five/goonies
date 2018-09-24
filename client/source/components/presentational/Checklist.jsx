@@ -33,10 +33,10 @@ class Checklist extends Component {
     const items = this.state.checklistItems.map((checklistItem, index) => <ChecklistItem message={checklistItem} key={index} />);
     return (
       <div>
-        <div className="space-head" />
-        <input type="text" value={this.state.newCheckListItem} onChange={this.changeHandler} />
-        <input type="button" value="Add" onClick={this.clickHandler} />
-        <div style={{ color: 'black', backgroundColor: 'green' }}>{items}</div>
+        <div className="list-head" />
+        <input type="text" value={this.state.newCheckListItem} placeholder="Add item..."onChange={this.changeHandler} />
+        <input className="list-btn" type="button" value="Add" onClick={this.clickHandler} />
+        <div className="list-items">{items}</div>
       </div>
     );
   }
