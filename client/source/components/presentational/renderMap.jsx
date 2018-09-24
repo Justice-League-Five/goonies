@@ -35,7 +35,7 @@ const GoogleMapsContainer = (props) => {
           style={style}
           google={google}
           zoom={9}
-          initialCenter={{ lat: 37.749669, lng: -119.555108 }}
+          initialCenter={{ lat: 44.4280, lng: -110.5885 }}
         >
           <Marker
             title="Yellowstone National Park"
