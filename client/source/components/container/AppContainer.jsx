@@ -60,7 +60,7 @@ class AppContainer extends React.Component {
       this.getTrailsData(lat, lng);
     }
   }
-  
+
   handleMenuClick() {
     const { showingMenu } = this.state;
     this.setState({ showingMenu: !showingMenu });
@@ -77,7 +77,7 @@ class AppContainer extends React.Component {
   render() {
     console.log('render', this.state.trailsData);
     const {
-      showingMenu, username, password, experience, trailsData
+      showingMenu, username, password, experience, trailsData, location, 
     } = this.state;
     // this the appcontainer code that should hide the button
     return (
