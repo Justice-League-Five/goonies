@@ -11,7 +11,6 @@ class ParkInfo extends React.Component {
       article: [],
       articleImg: [],
       news: [],
-      newsImg: [],
     };
   }
 
@@ -63,9 +62,9 @@ class ParkInfo extends React.Component {
   getNews() {
     axios.get('/api/park/news')
       .then((response) => {
+        console.log(response.data)
         this.setState({
-          news: response.data[0],
-          newsImg: (response.data[0].image),
+          news: response.data
         }, () => this.render());
       })
       .catch((error) => {
@@ -80,7 +79,7 @@ class ParkInfo extends React.Component {
     const { article } = this.state;
     const { articleImg } = this.state;
     const { news } = this.state;
-    const { newsImg } = this.state;
+
     return (
       <div className="parksInfo">
         <h1>{ parkName }</h1>
@@ -128,13 +127,17 @@ class ParkInfo extends React.Component {
         <h2>Current News</h2>
         <div>
           <p>
-            <img src={newsImg.url} />
-            <br />
-            <strong>{news.title}</strong>
-            <br />
-            {news.abstract}
-            <br />
-            <a href={news.url}>Read Further</a>
+            {
+              news.map((news, index) => (
+                <div>
+                  <strong>{news.title}</strong>
+                  <br />
+                  {news.abstract}
+                  <br />
+                  <a href={news.url}>Read Further</a>
+                </div>
+            ))
+            }
           </p>
         </div>
       </div>

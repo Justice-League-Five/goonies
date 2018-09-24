@@ -183,7 +183,7 @@ app.get('/api/park/articles', (req, res) => {
 
 app.get('/api/park/news', (req, res) => {
   // hard coded for yosemite alerts (parkCode=yose)
-  axios.get(`https://api.nps.gov/api/v1/newsreleases?parkCode=yose&api_key=api_key=${process.env.PARK_API}`)
+  axios.get(`https://api.nps.gov/api/v1/newsreleases?parkCode=yose&limit=5&api_key=api_key=${process.env.PARK_API}`)
     .then((data) => {
       res.send(data.data.data);
     })
