@@ -34,7 +34,7 @@ class AppContainer extends React.Component {
   }
 
   componentDidMount() {
-        this.selectLocation();
+    this.selectLocation();
     axios.get('/api/weather')
       .then((response) => {
         // console.log(response.data);
@@ -106,12 +106,17 @@ class AppContainer extends React.Component {
     const weather = { yosemite, yellowstone };
 
     return (
-      <div className="header">
+      <div className="Header">
         <nav>
           { username
-            ? <button className="menu" type="button" onClick={this.handleMenuClick.bind(this)}>MENU</button>
+            ? <div className="topnav">
+                <button className="menu" type="button" onClick={this.handleMenuClick.bind(this)}>MENU</button>
+                <button onClick={() => { this.selectLocation('Yosemite'); }} type="button" name="Yosemite" id="Yosemite">Yosemite</button>
+                <button onClick={() => { this.selectLocation('Yellowstone'); }} type="button" name="Yellowstone" id="Yellowstone">YellowStone</button>
+              </div>
             : (false) }
           { showingMenu
+            
             ? (
               <div className="dropdown">
                 <div className="close">
@@ -133,10 +138,6 @@ class AppContainer extends React.Component {
             : (null)
           }
         </nav>
-        <div className="topnav">
-          <button onClick={() => { this.selectLocation('Yosemite'); }} type="button" name="Yosemite" id="Yosemite">Yosemite</button>
-          <button onClick={() => { this.selectLocation('Yellowstone'); }} type="button" name="Yellowstone" id="Yellowstone">YellowStone</button>
-        </div>
         <Router>
           <Login exact path="/" transferUserInfo={this.transferUserInfo} />
           <SignUp path="/signUp" transferUserInfo={this.transferUserInfo} />
@@ -145,7 +146,7 @@ class AppContainer extends React.Component {
           <ParkInfo path="/info" />
           <RouteHistory path="/routes" routes={routes} username={username} />
           <Weather path="/weather" weather={weather} />
-          <Timer path="/timer" />
+          <Timer path="/explorer" />
         </Router>
       </div>
     );

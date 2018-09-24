@@ -70,10 +70,10 @@ class Weather extends React.Component {
     return (
       <div>
         <h1>{this.state.park}</h1>
-        <h2>Current Weather</h2>
+        {/* <h2>Current Weather</h2> */}
         <button type="button" onClick={this.changeWeather}>Yosemite</button>
-        <div className="currentWeather" style={{ backgroundColor: '#aaaaaa', padding: 15 }}>
-          Todays Forecast
+        <div className="currentWeather" >
+          Current Weather
           <p>
             Current temperature is
             &nbsp;
