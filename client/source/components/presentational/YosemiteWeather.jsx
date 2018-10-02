@@ -16,63 +16,47 @@ class YosemiteWeather extends React.Component {
       <div>
         <h1>Yosemite</h1>
         <h2>Current Weather</h2>
-        <button type="button" onClick={this.props.changeWeather}>YellowStone</button>
-        <div className="currentWeather" style={{ backgroundColor: '#aaaaaa', padding: 15 }}>
+        <button type="button" onClick={this.props.changeWeather}>
+          YellowStone
+        </button>
+        <div
+          className="currentWeather"
+          style={{ backgroundColor: '#aaaaaa', padding: 15 }}
+        >
           Todays Forecast
           <p>
-            Current temperature is
-            &nbsp;
+            Current temperature is &nbsp;
             {Math.round(currently.temperature)}
-            &deg;F
-            &nbsp;
-            Feels like
-            &nbsp;
+            &deg;F &nbsp; Feels like &nbsp;
             {Math.round(currently.apparentTemperature)}
-            &deg;F
-            &nbsp;
-            High
-            &nbsp;
+            &deg;F &nbsp; High &nbsp;
             {Math.round(daily.data[0].temperatureHigh)}
-            &deg;F
-            &nbsp;
-            Low
-            &nbsp;
+            &deg;F &nbsp; Low &nbsp;
             {Math.round(daily.data[0].temperatureLow)}
             &deg;F
           </p>
           <p>
-            Sun Rise
-            &nbsp;
+            Sun Rise &nbsp;
             {this.props.sunRise()}
-            &nbsp;
-            Sun Set
-            &nbsp;
+            &nbsp; Sun Set &nbsp;
             {this.props.sunSet()}
             &nbsp;
           </p>
           <p>
-            Humidity
-            &nbsp;
+            Humidity &nbsp;
             {daily.data[0].humidity}
-            &nbsp;
-            Today is
+            &nbsp; Today is
             {currently.summary}
-            &nbsp;
-            with Wind speed of
-            &nbsp;
+            &nbsp; with Wind speed of &nbsp;
             {daily.data[0].windSpeed}
-            &nbsp;
-            mph
-            &nbsp;
-            UV index
-            &nbsp;
+            &nbsp; mph &nbsp; UV index &nbsp;
             {daily.data[0].uvIndex}
           </p>
         </div>
         <br />
         <WeatherChart forecasts={daily.data} />
         <div>
-          <ForecastForm 
+          <ForecastForm
             forecasts={daily.data}
             sunRise={sunRise}
             sunSet={sunSet}

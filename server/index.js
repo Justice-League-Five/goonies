@@ -7,7 +7,6 @@ const app = express();
 require('dotenv').config();
 const weather = require('./weatherApiCall.js');
 // const path = require('path')
-
 const port = process.env.PORT || 5001;
 
 app.use(express.static(`${__dirname}/../client/dist`));
@@ -93,18 +92,17 @@ app.get('/api/routes', (req, res) => {
 
 app.patch('/api/routes', (req, res) => {
   const { route, username } = req.body.data;
-  db.createRoute(route, username)
-    .then((created) => {
-      if (created) {
-        res.status(200);
-        // console.log('Successfully stored');
-        res.send('Successfully stored');
-      } else {
-        res.status(200);
-        // console.log('Successfully inserted');
-        res.send('Successfully inserted');
-      }
-    });
+  db.createRoute(route, username).then((created) => {
+    if (created) {
+      res.status(200);
+      // console.log('Successfully stored');
+      res.send('Successfully stored');
+    } else {
+      res.status(200);
+      // console.log('Successfully inserted');
+      res.send('Successfully inserted');
+    }
+  });
 });
 
 app.delete('/api/routes', (req, res) => {
@@ -124,7 +122,10 @@ app.delete('/api/routes', (req, res) => {
 
 // ///// WEATHER ///// //
 app.get('/api/weather', (req, res) => {
-  axios.get('https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/44.4280,110.5885')
+  axios
+    .get(
+      'https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/44.4280,110.5885',
+    )
     .then((response) => {
       res.send(response.data);
     })
@@ -134,7 +135,10 @@ app.get('/api/weather', (req, res) => {
 });
 
 app.get('/api/weather/yosemite', (req, res) => {
-  axios.get('https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/37.8651,119.5383')
+  axios
+    .get(
+      'https://api.darksky.net/forecast/588365177ca74f9bde7566d97755fe75/37.8651,119.5383',
+    )
     .then((response) => {
       res.send(response.data);
     })
@@ -143,13 +147,17 @@ app.get('/api/weather/yosemite', (req, res) => {
     });
 });
 
-
 // ///// PARK INFO ///// //
 
 app.get('/api/park/alerts', (req, res) => {
   // hard coded for yosemite alerts (parkCode=yose)
-  axios.get(`https://api.nps.gov/api/v1/alerts?parkCode=yose,%2C&stateCode=ca&limit=10&api_key=${process.env.PARK_API}`)
-  //axios.get(`https://api.nps.gov/api/v1/alerts?parkCode=yose%2C&stateCode=ca&limit=10&api_key=${process.env.PARK_API}`)
+  axios
+    .get(
+      `https://api.nps.gov/api/v1/alerts?parkCode=yose,%2C&stateCode=ca&limit=10&api_key=${
+        process.env.PARK_API
+      }`,
+    )
+    // axios.get(`https://api.nps.gov/api/v1/alerts?parkCode=yose%2C&stateCode=ca&limit=10&api_key=${process.env.PARK_API}`)
     .then((data) => {
       res.send(data.data);
     })
@@ -160,8 +168,13 @@ app.get('/api/park/alerts', (req, res) => {
 
 app.get('/api/park/info', (req, res) => {
   // hard coded for yosemite park info (parkCode=yose)
-  axios.get(`https://developer.nps.gov/api/v1/parks?parkCode=yose&api_key=${process.env.PARK_API}`)
-  //axios.get(`https://api.nps.gov/api/v1/parks?parkCode=yose&stateCode=ca&api_key=${process.env.PARK_API}`)
+  axios
+    .get(
+      `https://developer.nps.gov/api/v1/parks?parkCode=yose&api_key=${
+        process.env.PARK_API
+      }`,
+    )
+    // axios.get(`https://api.nps.gov/api/v1/parks?parkCode=yose&stateCode=ca&api_key=${process.env.PARK_API}`)
     .then((data) => {
       res.send(data.data.data);
     })
@@ -172,7 +185,12 @@ app.get('/api/park/info', (req, res) => {
 
 app.get('/api/park/articles', (req, res) => {
   // hard coded for yosemite alerts (parkCode=yose)
-  axios.get(`https://api.nps.gov/api/v1/articles?parkCode=yose&api_key=api_key=${process.env.PARK_API}`)
+  axios
+    .get(
+      `https://api.nps.gov/api/v1/articles?parkCode=yose&api_key=api_key=${
+        process.env.PARK_API
+      }`,
+    )
     .then((data) => {
       res.send(data.data.data);
     })
@@ -183,7 +201,12 @@ app.get('/api/park/articles', (req, res) => {
 
 app.get('/api/park/news', (req, res) => {
   // hard coded for yosemite alerts (parkCode=yose)
-  axios.get(`https://api.nps.gov/api/v1/newsreleases?parkCode=yose&limit=5&api_key=api_key=${process.env.PARK_API}`)
+  axios
+    .get(
+      `https://api.nps.gov/api/v1/newsreleases?parkCode=yose&limit=5&api_key=api_key=${
+        process.env.PARK_API
+      }`,
+    )
     .then((data) => {
       res.send(data.data.data);
     })
@@ -191,7 +214,6 @@ app.get('/api/park/news', (req, res) => {
       console.log(err);
     });
 });
-
 
 // Redirects to login page when page refreshes
 app.get('*', (req, res) => {

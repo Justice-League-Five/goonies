@@ -28,9 +28,9 @@ class Weather extends React.Component {
     const unix = daily.data[0].sunriseTime;
     const date = new Date(unix * 1000);
     const hours = date.getHours();
-    const minutes = "0" + date.getMinutes();
-    const seconds = "0" + date.getSeconds();
-    const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    const minutes = '0' + date.getMinutes();
+    const seconds = '0' + date.getSeconds();
+    const formattedTime =      `${hours  }:${  minutes.substr(-2)  }:${  seconds.substr(-2)}`;
     return formattedTime;
   }
 
@@ -39,9 +39,9 @@ class Weather extends React.Component {
     const unix = daily.data[0].sunsetTime;
     const date = new Date(unix * 1000);
     const hours = date.getHours();
-    const minutes = "0" + date.getMinutes();
-    const seconds = "0" + date.getSeconds();
-    const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    const minutes = '0' + date.getMinutes();
+    const seconds = '0' + date.getSeconds();
+    const formattedTime =      `${hours  }:${  minutes.substr(-2)  }:${  seconds.substr(-2)}`;
     return formattedTime;
   }
 
@@ -71,57 +71,37 @@ class Weather extends React.Component {
       <div>
         <h1>{this.state.park}</h1>
         {/* <h2>Current Weather</h2> */}
-        <button type="button" onClick={this.changeWeather}>Yosemite</button>
-        <div className="currentWeather" >
+        <button type="button" onClick={this.changeWeather}>
+          Yosemite
+        </button>
+        <div className="currentWeather">
           Current Weather
           <p>
-            Current temperature is
-            &nbsp;
+            Current temperature is &nbsp;
             {Math.round(currently.temperature)}
-            &deg;F
-            &nbsp;
-            Feels like
-            &nbsp;
+            &deg;F &nbsp; Feels like &nbsp;
             {Math.round(currently.apparentTemperature)}
-            &deg;F
-            &nbsp;
-            High
-            &nbsp;
+            &deg;F &nbsp; High &nbsp;
             {Math.round(daily.data[0].temperatureHigh)}
-            &deg;F
-            &nbsp;
-            Low
-            &nbsp;
+            &deg;F &nbsp; Low &nbsp;
             {Math.round(daily.data[0].temperatureLow)}
             &deg;F
           </p>
           <p>
-            Sun Rise
-            &nbsp;
+            Sun Rise &nbsp;
             {this.sunRise()}
-            &nbsp;
-            Sun Set
-            &nbsp;
+            &nbsp; Sun Set &nbsp;
             {this.sunSet()}
             &nbsp;
           </p>
           <p>
-            Humidity
-            &nbsp;
+            Humidity &nbsp;
             {daily.data[0].humidity}
-            &nbsp;
-            Today is
-            &nbsp;
+            &nbsp; Today is &nbsp;
             {currently.summary}
-            &nbsp;
-            with Wind speed of
-            &nbsp;
+            &nbsp; with Wind speed of &nbsp;
             {daily.data[0].windSpeed}
-            &nbsp;
-            mph
-            &nbsp;
-            UV index
-            &nbsp;
+            &nbsp; mph &nbsp; UV index &nbsp;
             {daily.data[0].uvIndex}
           </p>
         </div>

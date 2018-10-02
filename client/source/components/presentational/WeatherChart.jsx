@@ -4,7 +4,16 @@ import { Line } from 'react-chartjs-2';
 const WeatherChart = (forecast) => {
   const { forecasts } = forecast;
   const data = {
-    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8'],
+    labels: [
+      'Day 1',
+      'Day 2',
+      'Day 3',
+      'Day 4',
+      'Day 5',
+      'Day 6',
+      'Day 7',
+      'Day 8',
+    ],
     datasets: [
       {
         label: 'Highs and Lows for the next 8 days',
@@ -33,7 +42,8 @@ const WeatherChart = (forecast) => {
           forecasts[4].temperatureHigh,
           forecasts[5].temperatureHigh,
           forecasts[6].temperatureHigh,
-          forecasts[7].temperatureHigh],
+          forecasts[7].temperatureHigh,
+        ],
       },
       {
         label: 'Low for the next 8 days',
@@ -69,7 +79,7 @@ const WeatherChart = (forecast) => {
   };
 
   return (
-    <div className="weatherChart" >
+    <div className="weatherChart">
       <h2>Weekly Highs</h2>
       <Line data={data} />
     </div>
